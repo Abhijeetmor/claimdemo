@@ -1,0 +1,45 @@
+	//get the name of the user of machine where the node is running(for autoit only) : @AM
+	public String getNodeUserInfo (RemoteWebDriver autoit)
+	{	
+		try
+		{
+			return (String) autoit.executeScript( "String result=System.getProperty(\"user.name\");\n"
+															+ "return result;",
+													new String[] { "GROOVY" });
+		}
+		catch(Exception e)
+		{
+			log.error("Exception in getNodeUserInfo: "+e);
+		}
+		return null;
+	}
+
+   //delete file from node : @AM
+   public boolean deleteNodeFile(RemoteWebDriver autoit,String strFilepath)
+	{
+			boolean result = false;
+			try
+			{
+				String sampcode = "new File(\""+strFilepath.replace("\\","\\\\").replace("\"", "\\\"")+"\").delete();\n"+
+								  "return null;";
+				autoit.executeScript( sampcode, new String[] { "GROOVY" });
+				result = true;
+			}
+			catch(Exception e)
+			{
+				log.error("Exception in deleteNodeFile:"+e);
+			}
+			return result;
+	}
+            ArrayList fid_basket = new ArrayList();
+        LinkedHashMap botFID = new LinkedHashMap();
+              botFID = new LinkedHashMap();
+            
+            botFID.put("star_user",  dbRecord.get("fid"));
+            fid_basket.add(botFID); 
+  
+          <multi-column list="${fid_basket}" split-results="true">
+            <put-to-column-getter name="star_user" property="star_user" />
+        </multi-column> 
+        
+        
